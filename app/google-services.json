@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "976183363313",
+    "firebase_url": "https://co2tracker-35f57-default-rtdb.firebaseio.com",
+    "project_id": "co2tracker-35f57",
+    "storage_bucket": "co2tracker-35f57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976183363313:android:d5be9195f6038f7f774b50",
+        "android_client_info": {
+          "package_name": "com.example.co2monitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976183363313-cgdp504q0nvso7at4m0ih295uv74ib1p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsCnFZ4eo8juunNFDGRB5nxdCVIlyaaOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976183363313-cgdp504q0nvso7at4m0ih295uv74ib1p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
