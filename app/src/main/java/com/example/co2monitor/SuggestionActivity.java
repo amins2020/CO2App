@@ -22,5 +22,9 @@ public class SuggestionActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
     }
 }
