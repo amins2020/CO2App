@@ -1,3 +1,61 @@
 <resources>
     <string name="app_name">CO2Monitor</string>
+    <string name="title_activity_suggestion">Improve Air Quality</string>
+    <string name="suggestion_text">
+
+        "1. Avoid smoking indoors to improve your indoor air quality. Ban usage of tobacco and "
+        "smoking products, which releases CO2 and other chemicals in the air.\n\n"
+
+    <ul>
+        "2. Control Humidity Levels:\n\n"
+        <li>Make sure to check around the house for water leaks to avoid and stop the growth
+            of mould due to dampness.\n\n</li>
+
+        <li>Use a bathroom or kitchen exhaust fan when showering or cooking to reduce
+            humidity. Keep the fan on for at least 30 minutes afterward.\n\n</li>
+
+        <li>Use a dehumidifier to remove water from the air, especially in the summer.
+            Remove water from dehumidifiers when not in use so bacteria do not grow.\n\n</li>
+
+    </ul>
+
+        "3. If the weather permits and if the room possesses windows, open them to let fresh air "
+        "in and circulate around your rooms.\n\n"
+
+
+        "4. If the home layout permits, make sure household appliances are installed, maintained, "
+        "and working according to the manufacturers' instructions: gas water heaters,gas or "
+        "oil furnaces, gas or wood stoves, and gas or wood fireplaces.\n\n"
+
+
+        "5. Clean around the house more often: Clean floors with a damp mop or cloth. Clean the "
+        "lint tray every time you use the dryer and check for lint build-up on the outside vent. "
+        "Use a mattress and pillow protector. Also, vacuum mattresses and wash sheets once a week "
+        "in hot water. Vacuum often. Install a central vacuum that is vented outdoors.\n\n"
+
+
+        "6. If the house has an attached garage, avoid idling your car, gas-powered or snow blower "
+        "in your garage. The carbon monoxide produced by theses objects will reduce the quality of "
+        "breathable air. Pollutants can enter your home from the garage whether the garage door is "
+        "is open or closed.\n\n"
+
+
+        "7. Investing in an air purifier can benefit at reducing indoor allergens placing it in "
+        "the most commonly used area of the house. However, it does not completely remove"
+        "allergens. Certain items can also be invested to improve air quality. For example, beeswax"
+        " candles act like air purifiers. Pollen, dust, dirt, pollutants, and any other junk in the "
+        "air carry a positive charge, so when a beeswax candle is burning the negative ions "
+        "released into the air cause these positively charged particles to be sucked into the "
+        "candles or to fall from suspension. A salt lamp, which is a light source put into a "
+        "large mass of Himalayan salt, is another object to possess properties that reduce "
+        "allergies and asthma symptoms.\n\n"
+
+
+        "8. Plants are natural purifiers too that can recycle the air from CO2 to oxygen. Here are "
+        "several examples of plants that are good for their air filter capabilities: "
+        "red-edged dracaena, weeping fig, and bamboo palm."
+
+
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>
