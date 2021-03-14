@@ -2,7 +2,6 @@
     <string name="app_name">CO2Monitor</string>
     <string name="title_activity_suggestion">Improve Air Quality</string>
     <string name="suggestion_text">
-
         "1. Avoid smoking indoors to improve your indoor air quality. Ban usage of tobacco and "
         "smoking products, which releases CO2 and other chemicals in the air.\n\n"
 
@@ -58,4 +57,30 @@
 
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_info">Levels of CO2</string>
+
+    <string name="info_text">
+        "To ensure a safe and breathable environment, here are different levels of CO2 to consider:"
+        "\n\n"
+
+        "250-400ppm: Normal background concentration in outdoor ambient air\n\n"
+
+        "400-1,000ppm: Typical concentration level of occupied indoor spaces with good air exchange.
+        \n\n"
+
+        "1,000-2,000ppm: Level associated with complaints of drowsiness and poor air.\n\n"
+
+        "2,000-5,000ppm: Headaches, sleepiness and stagnant, stale, stuffy air. Poor "
+        "concentration, loss of attention, increased heart rate and slight nausea may also be "
+        "present.\n\n"
+
+        "5,000ppm: Indication of unusual air conditions where high levels of other gases could also"
+        " be present. Toxicity or oxygen deprivation could occur. This is the permissible exposure "
+        "limit for daily workplace exposures. It is recommended that the average concentration over"
+        "an 8-hour period should not exceed 5,000 ppm.\n\n"
+
+        "Above 40,000ppm: Exposure may lead to serious oxygen deprivation resulting in permanent "
+        "brain damage, coma, or even death.\n\n"
+    </string>
+
 </resources>

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView2;
 
     private Button suggestion;
+    private Button info;
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference co2data = mDatabase.child("co2_ppm");
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 openSuggestionActivity();
             }
         });
+
+        info = findViewById(R.id.info_button);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInfoActivity();
+            }
+        });
     }
 
     public void openSuggestionActivity(){
@@ -48,11 +57,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openInfoActivity(){
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
 
-        co2data.addValueEventListener(new ValueEventListener() {
+       co2data.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String co2data = dataSnapshot.getValue(String.class);
@@ -64,6 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        
+
     }
 }

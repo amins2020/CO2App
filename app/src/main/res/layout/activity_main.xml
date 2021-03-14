@@ -30,8 +30,8 @@
         android:background="#FFFFFF"
         android:text="CO2 in ppm"
         android:textAlignment="center"
-        android:textSize="32dp"
         android:textColor="@color/black"
+        android:textSize="32dp"
         app:layout_constraintBottom_toTopOf="@+id/co2Concentration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,12 +39,25 @@
 
     <Button
         android:id="@+id/suggestion_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:layout_marginStart="274dp"
         android:layout_marginTop="202dp"
         android:layout_marginBottom="39dp"
         android:text="Suggestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/co2Concentration" />
+
+    <Button
+        android:id="@+id/info_button"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="274dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="55dp"
+        android:text="CO2 Levels"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
