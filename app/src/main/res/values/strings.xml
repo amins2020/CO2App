@@ -1,3 +1,4 @@
+<!--Contains the text for SuggestionActivity and InfoActivity-->
 <resources>
     <string name="app_name">CO2Monitor</string>
     <string name="title_activity_suggestion">Improve Air Quality</string>
@@ -58,7 +59,6 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_info">Levels of CO2</string>
-
     <string name="info_text">
         "To ensure a safe and breathable environment, here are different levels of CO2 to consider:"
         "\n\n"
@@ -82,5 +82,4 @@
         "Above 40,000ppm: Exposure may lead to serious oxygen deprivation resulting in permanent "
         "brain damage, coma, or even death.\n\n"
     </string>
-
 </resources>
