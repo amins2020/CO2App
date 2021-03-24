@@ -1,13 +1,18 @@
 <!--Contains the text for SuggestionActivity and InfoActivity-->
 <resources>
     <string name="app_name">CO2Monitor</string>
-    <string name="title_activity_suggestion">Improve Air Quality</string>
+    <string name="title_activity_suggestion"><font size = "75">IMPROVE AIR QUALITY</font></string>
     <string name="suggestion_text">
-        "1. Avoid smoking indoors to improve your indoor air quality. Ban usage of tobacco and "
-        "smoking products, which releases CO2 and other chemicals in the air.\n\n"
 
+       <uo>
+            <b><u>"TIPS TO IMPROVE AIR QUALITY \n\n"</u></b>
+
+            <i><u>"1.Smoking Habits\n"</u></i>
+        "Avoid smoking indoors to improve your indoor air quality. Ban usage of tobacco and "
+        "smoking products, which releases CO2 and other chemicals in the air.\n\n"
+       </uo>
     <ul>
-        "2. Control Humidity Levels:\n\n"
+        <i><u>"2.Control of Humidity Levels\n"</u></i>
         <li>Make sure to check around the house for water leaks to avoid and stop the growth
             of mould due to dampness.\n\n</li>
 
@@ -18,68 +23,84 @@
             Remove water from dehumidifiers when not in use so bacteria do not grow.\n\n</li>
 
     </ul>
-
-        "3. If the weather permits and if the room possesses windows, open them to let fresh air "
+        <i><u>"3.Air Circulation\n"</u></i>
+        "If the weather permits and if the room possesses windows, open them to let fresh air "
         "in and circulate around your rooms.\n\n"
 
-
-        "4. If the home layout permits, make sure household appliances are installed, maintained, "
+        <i><u>"4.Household Appliance Maintenance\n"</u></i>
+        "If the home layout permits, make sure household appliances are installed, maintained, "
         "and working according to the manufacturers' instructions: gas water heaters,gas or "
-        "oil furnaces, gas or wood stoves, and gas or wood fireplaces.\n\n"
+        "oil furnaces, gas or wood stoves, and gas or wood fireplaces, which are all sources of CO2.\n\n"
 
+        <i><u>"5.House Cleaning\n"</u></i>
+        <li>Clean floors with a damp mop or cloth.\n\n</li>
+        <li>Clean the lint tray every time you use the dryer and check for lint build-up on the outside vent. \n\n</li>
+        <li>Use a mattress and pillow protector. Also, vacuum mattresses and wash sheets once a week in hot water. \n\n</li>
+        <li>Vacuum often. Install a central vacuum that is vented outdoors.\n\n"</li>
 
-        "5. Clean around the house more often: Clean floors with a damp mop or cloth. Clean the "
-        "lint tray every time you use the dryer and check for lint build-up on the outside vent. "
-        "Use a mattress and pillow protector. Also, vacuum mattresses and wash sheets once a week "
-        "in hot water. Vacuum often. Install a central vacuum that is vented outdoors.\n\n"
-
-
-        "6. If the house has an attached garage, avoid idling your car, gas-powered or snow blower "
-        "in your garage. The carbon monoxide produced by theses objects will reduce the quality of "
+        <i><u>"6.Attached Garage\n"</u></i>
+        "If the house has an attached garage, avoid idling your car, gas-powered snow blower "
+        "in your garage. Carbon monoxide produced by theses objects will reduce the quality of "
         "breathable air. Pollutants can enter your home from the garage whether the garage door is "
         "is open or closed.\n\n"
+<u2>
+        <i><u>"7.Air Quality Items\n"</u></i>
+        <li>Investing in an air purifier reduces indoor allergens when placed in
+            the most commonly used area of the house. However, it does not completely remove allergens.\n\n</li>
 
-
-        "7. Investing in an air purifier can benefit at reducing indoor allergens placing it in "
-        "the most commonly used area of the house. However, it does not completely remove"
-        "allergens. Certain items can also be invested to improve air quality. For example, beeswax"
-        " candles act like air purifiers. Pollen, dust, dirt, pollutants, and any other junk in the "
-        "air carry a positive charge, so when a beeswax candle is burning the negative ions "
-        "released into the air cause these positively charged particles to be sucked into the "
-        "candles or to fall from suspension. A salt lamp, which is a light source put into a "
-        "large mass of Himalayan salt, is another object to possess properties that reduce "
-        "allergies and asthma symptoms.\n\n"
-
-
-        "8. Plants are natural purifiers too that can recycle the air from CO2 to oxygen. Here are "
+        <li>Beeswaxcandles, which act like air purifiers.\n\n</li>
+        <li>A salt lamp, which is a light source put into a
+        large mass of Himalayan salt, another object to possess properties that reduce
+            allergies and asthma symptoms.\n\n</li>
+</u2>
+            <i><u>"8.Indoor Plants \n"</u></i>
+        "Plants are natural purifiers too that can recycle the air from CO2 to oxygen. Here are "
         "several examples of plants that are good for their air filter capabilities: "
-        "red-edged dracaena, weeping fig, and bamboo palm."
+        "red-edged dracaena, weeping fig, and bamboo palm.\n\n"
 
+        "<u>Resources:\n</u>"
+      <font size = "10">
+          "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
+        "[2]https://www.health.harvard.edu/staying-healthy/easy-ways-you-can-improve-indoor-air-quality \n"
+        "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
+        "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
+        "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
 
     </string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_info">Levels of CO2</string>
+    <string name="title_activity_info"><font size="75">LEVELS OF CO2</font></string>
+
     <string name="info_text">
-        "To ensure a safe and breathable environment, here are different levels of CO2 to consider:"
-        "\n\n"
+        "<b>Different levels of CO2 with possible side-effects :
+        \n\n"</b>
 
-        "250-400ppm: Normal background concentration in outdoor ambient air\n\n"
+        "<u><b><i>250-400ppm:</i></b></u> Normal background concentration in outdoor ambient air\n\n"
 
-        "400-1,000ppm: Typical concentration level of occupied indoor spaces with good air exchange.
+        "<u><b><i>400-1,000ppm:</i></b></u> Typical concentration level of occupied indoor spaces with good air exchange.
         \n\n"
 
-        "1,000-2,000ppm: Level associated with complaints of drowsiness and poor air.\n\n"
+        "<u><b><i>1,000 - 2,000ppm:</i></b></u> Level associated with complaints of drowsiness and poor air.\n\n"
+        "<u><b><i>2,000 - 5,000ppm:</i></b></u> Headaches, sleepiness and stagnant, stale, stuffy air. Poor
+        concentration, loss of attention, increased heart rate and slight nausea may also be
+        present.\n\n"
+        "<u><b><i>5,000ppm:</i></b></u>Toxicity or oxygen deprivation could occur. This is the permissible exposure
+        limit for daily workplace exposures. It is recommended that the average concentration over
+        an 8-hour period should not exceed 5,000 ppm.\n\n"
 
-        "2,000-5,000ppm: Headaches, sleepiness and stagnant, stale, stuffy air. Poor "
-        "concentration, loss of attention, increased heart rate and slight nausea may also be "
-        "present.\n\n"
+        "<u><b><i>Above 40,000ppm:</i></b></u> Exposure may lead to serious oxygen deprivation resulting in permanent
+        brain damage, coma, or even death.\n\n"
 
-        "5,000ppm: Indication of unusual air conditions where high levels of other gases could also"
-        " be present. Toxicity or oxygen deprivation could occur. This is the permissible exposure "
-        "limit for daily workplace exposures. It is recommended that the average concentration over"
-        "an 8-hour period should not exceed 5,000 ppm.\n\n"
+                "<u>Resources:\n</u>"
+      <font size = "10">
+"[1]https://www.kane.co.uk/knowledge-centre/what-are-safe-levels-of-co-and-co2-in-rooms \n"
 
-        "Above 40,000ppm: Exposure may lead to serious oxygen deprivation resulting in permanent "
-        "brain damage, coma, or even death.\n\n"
+"[2]https://www.theguardian.com/environment/2019/jul/08/indoor-carbon-dioxide-levels-could-be-a-health-hazard-scientists-warn \n"
+
+"[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
+
+"[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
+
+        </font>
     </string>
+
 </resources>
