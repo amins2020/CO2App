@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CO2Monitor">
         <activity
+
             android:name=".SuggestionActivity"
             android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_suggestion"
@@ -33,3 +34,4 @@
     </application>
 
 </manifest>
+    <!-- android:parentActivityName=".MainActivity" is used to make the back arrow go back to the MainActivity-->

@@ -12,6 +12,7 @@ import android.text.style.TypefaceSpan;
 
 import android.view.View;
 
+//Used to show tips on improving air quality
 public class SuggestionActivity extends AppCompatActivity {
 
     @Override
@@ -23,7 +24,7 @@ public class SuggestionActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Used in order to make a back arrow button to go back to the MainActivity
 
 
 
