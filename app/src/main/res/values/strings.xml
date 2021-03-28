@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">CO2Monitor</string>
     <string name="title_activity_suggestion"><font size = "75">IMPROVE AIR QUALITY</font></string>
+    <string name="navigation_drawer_open">Open Navigation drawer</string>
+    <string name="navigation_drawer_close">Close Navigation drawer</string>
     <string name="suggestion_text">
 
        <uo>
