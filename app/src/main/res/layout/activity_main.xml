@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/skyBlue"
+    android:background="@drawable/cloud5"
     tools:context=".MainActivity">
-
 
     <TextView
         android:id="@+id/co2Concentration"
@@ -45,6 +44,7 @@
         android:layout_marginTop="202dp"
         android:layout_marginBottom="39dp"
         android:text="Suggestions"
+        app:backgroundTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +58,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginBottom="55dp"
         android:text="CO2 Levels"
+        app:backgroundTint="#BF00D4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
