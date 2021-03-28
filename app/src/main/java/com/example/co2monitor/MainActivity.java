@@ -19,14 +19,21 @@ import com.google.firebase.database.ValueEventListener;
 public class  MainActivity extends AppCompatActivity {
 
 // Public and Private members used in MainActivity
-    private TextView textView1;
-    private TextView textView2;
+    private TextView co2lable;
+    private TextView humidityLable;
+    private TextView tempLable;
+
+    private TextView co2Levels;
+    private TextView temperature;
+    private TextView humidity;
 
     private Button suggestion;
     private Button info;
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference co2data = mDatabase.child("co2_ppm");
+    DatabaseReference tempData = mDatabase.child("temperature");
+    DatabaseReference humidityData = mDatabase.child("humidity");
 
 //Methods
     @Override
@@ -35,8 +42,13 @@ public class  MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //
-        textView1 = findViewById(R.id.label);//Indicates that the numbers below are CO2 ppms
-        textView2 = findViewById(R.id.co2Concentration);//Used to show ppm
+        co2lable = findViewById(R.id.label);//Indicates that the numbers below are CO2 ppms
+        humidityLable = findViewById(R.id.humidityLabletextView);
+        tempLable = findViewById(R.id.tempLableTextView);
+
+        co2Levels = findViewById(R.id.co2Concentration);//Used to show ppm
+        temperature = findViewById(R.id.tempTextView);
+        humidity = findViewById(R.id.humidityTextView);
 
         //Button for SuggestionActivity
         suggestion = findViewById(R.id.suggestion_button);
@@ -79,7 +91,7 @@ public class  MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String co2data = dataSnapshot.getValue(String.class);
-                textView2.setText(co2data);
+                co2Levels.setText(co2data);
             }
 
             @Override
@@ -87,6 +99,30 @@ public class  MainActivity extends AppCompatActivity {
 
             }
         });
+       tempData.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               String temp = dataSnapshot.getValue(String.class);
+               temperature.setText(temp + " ˚C");
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+       humidityData.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               String hum = dataSnapshot.getValue(String.class);
+               humidity.setText(hum + " %");
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
 
     }
 }
