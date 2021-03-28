@@ -64,7 +64,6 @@
         "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
         "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
         "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
-
     </string>
 
 <string name="suggestion_ref_text">
@@ -75,17 +74,12 @@
         "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
         "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
         "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
-
 </string>
-
 
 
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_info"><font size="25">LEVELS OF CO2</font></string>
-
-
-
 
 
 
@@ -120,7 +114,6 @@
 "[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
 
 "[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
-
         </font>
     </string>
 
@@ -134,7 +127,6 @@
 "[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
 
 "[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
-
         </font>
     </string>
 
