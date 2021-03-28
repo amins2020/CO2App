@@ -1,7 +1,6 @@
-<!--Contains the text for SuggestionActivity and InfoActivity-->
 <resources>
     <string name="app_name">CO2Monitor</string>
-    <string name="title_activity_suggestion"><font size = "75">IMPROVE AIR QUALITY</font></string>
+    <string name="title_activity_suggestion"><font size = "25">IMPROVE AIR QUALITY</font></string>
     <string name="suggestion_text">
 
        <uo>
@@ -60,15 +59,31 @@
 
         "<u>Resources:\n</u>"
       <font size = "10">
-          "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
+        "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
         "[2]https://www.health.harvard.edu/staying-healthy/easy-ways-you-can-improve-indoor-air-quality \n"
         "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
         "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
         "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
-
     </string>
+
+<string name="suggestion_ref_text">
+        "<u>Resources:\n</u>"
+      <font size = "10">
+        "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
+        "[2]https://www.health.harvard.edu/staying-healthy/easy-ways-you-can-improve-indoor-air-quality \n"
+        "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
+        "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
+        "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
+</string>
+
+
+
     <string name="action_settings">Settings</string>
-    <string name="title_activity_info"><font size="75">LEVELS OF CO2</font></string>
+    <string name="title_activity_info"><font size="25">LEVELS OF CO2</font></string>
+
+
+
+
 
     <string name="info_text">
         "<b>Different levels of CO2 with possible side-effects :
@@ -99,8 +114,30 @@
 "[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
 
 "[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
-
         </font>
     </string>
+
+    <string name="info_ref_text">
+        "<u>Resources:\n</u>"
+      <font size = "10">
+"[1]https://www.kane.co.uk/knowledge-centre/what-are-safe-levels-of-co-and-co2-in-rooms \n"
+
+"[2]https://www.theguardian.com/environment/2019/jul/08/indoor-carbon-dioxide-levels-could-be-a-health-hazard-scientists-warn \n"
+
+"[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
+
+"[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
+        </font>
+    </string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 </resources>
