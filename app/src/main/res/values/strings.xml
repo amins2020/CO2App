@@ -68,17 +68,14 @@
     </string>
 
 <string name="suggestion_ref_text">
-    "<u>Resources:\n</u>"
-    <font size = "10">
-        "[1]https://www.kane.co.uk/knowledge-centre/what-are-safe-levels-of-co-and-co2-in-rooms \n"
+        "<u>Resources:\n</u>"
+      <font size = "10">
+        "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
+        "[2]https://www.health.harvard.edu/staying-healthy/easy-ways-you-can-improve-indoor-air-quality \n"
+        "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
+        "[4]https://interestingengineering.com/11-easy-tips-to-improve-the-indoor-air-quality-in-your-home \n"
+        "[5]https://gbdmagazine.com/how-to-lower-co2-levels-in-home/ \n"</font>
 
-        "[2]https://www.theguardian.com/environment/2019/jul/08/indoor-carbon-dioxide-levels-could-be-a-health-hazard-scientists-warn \n"
-
-        "[3]https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm#:~:text=250%20%2D%20400%20ppm%3A%20background%20 \n"
-
-        "[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
-
-    </font>
 </string>
 
 

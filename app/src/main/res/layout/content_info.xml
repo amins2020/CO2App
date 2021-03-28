@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:justificationMode="inter_word"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/info_text" />
+        android:text="" />
 
 </androidx.core.widget.NestedScrollView>
