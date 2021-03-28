@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="darkGrey">#A1A1A5</color>
     <color name="skyBlue">#79BDE9</color>
+    <color name="titletextcolor">#2196F3</color>
 </resources>

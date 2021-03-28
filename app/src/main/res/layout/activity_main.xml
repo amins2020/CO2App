@@ -5,20 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cloud5"
+    android:longClickable="false"
+    android:nestedScrollingEnabled="false"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/co2Concentration"
-        android:layout_width="160dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="288dp"
-        android:text="Loading..."
-        android:textAlignment="center"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/label"
@@ -35,6 +24,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/co2Concentration"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="288dp"
+        android:text="Loading..."
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/suggestion_button"
