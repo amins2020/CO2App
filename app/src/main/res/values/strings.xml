@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CO2Monitor</string>
     <string name="title_activity_suggestion"><font size = "25">IMPROVE AIR QUALITY</font></string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="suggestion_text">
 
        <uo>
@@ -68,7 +70,7 @@
 
 <string name="suggestion_ref_text">
         "<u>Resources:\n</u>"
-      <font size = "10">
+      <font size = "13">
         "[1]https://www.canada.ca/en/health-canada/services/air-quality/improve-indoor-air-quality.html \n"
         "[2]https://www.health.harvard.edu/staying-healthy/easy-ways-you-can-improve-indoor-air-quality \n"
         "[3]https://www.epa.gov/indoor-air-quality-iaq/improving-indoor-air-quality \n"
@@ -106,7 +108,7 @@
         brain damage, coma, or even death.\n\n"
 
                 "<u>Resources:\n</u>"
-      <font size = "10">
+      <font size = "13">
 "[1]https://www.kane.co.uk/knowledge-centre/what-are-safe-levels-of-co-and-co2-in-rooms \n"
 
 "[2]https://www.theguardian.com/environment/2019/jul/08/indoor-carbon-dioxide-levels-could-be-a-health-hazard-scientists-warn \n"
@@ -119,7 +121,7 @@
 
     <string name="info_ref_text">
         "<u>Resources:\n</u>"
-      <font size = "10">
+      <font size = "15">
 "[1]https://www.kane.co.uk/knowledge-centre/what-are-safe-levels-of-co-and-co2-in-rooms \n"
 
 "[2]https://www.theguardian.com/environment/2019/jul/08/indoor-carbon-dioxide-levels-could-be-a-health-hazard-scientists-warn \n"
@@ -128,6 +130,13 @@
 
 "[4]https://www.health.state.mn.us/communities/environment/air/toxins/co2.html \n"
         </font>
+    </string>
+
+    <string name="disclaimer_text">
+ "*ppm (parts per million) is the units used to measure CO2 concentration. Often used to describe concentrations of contaminants in air (as a volume fraction).  \n\n"
+
+ "Disclaimer: the sensor's measurement limit is 10,000 ppm!!!\n\n"
+
     </string>
 
 
@@ -139,5 +148,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="co2_ppm"><u>CO₂(ppm)</u></string>
 
 </resources>

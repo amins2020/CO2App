@@ -16,15 +16,13 @@
             android:name=".SuggestionActivity"
             android:label="@string/title_activity_suggestion"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.CO2Monitor.NoActionBar"
-            />
+            android:theme="@style/Theme.CO2Monitor.NoActionBar" />
 
         <activity
             android:name=".InfoActivity"
             android:label="@string/title_activity_info"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.CO2Monitor.NoActionBar"
-            />
+            android:theme="@style/Theme.CO2Monitor.NoActionBar" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -34,7 +32,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Settings" />
+
     </application>
 
-</manifest>
-    <!-- android:parentActivityName=".MainActivity" is used to make the back arrow go back to the MainActivity-->
+</manifest><!-- android:parentActivityName=".MainActivity" is used to make the back arrow go back to the MainActivity-->
