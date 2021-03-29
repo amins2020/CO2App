@@ -14,10 +14,11 @@
         android:layout_width="199dp"
         android:layout_height="57dp"
         android:layout_marginTop="134dp"
-        android:background="#FFFFFF"
-        android:text="CO2 (ppm)"
+
+        android:fontFamily="monospace"
+        android:text="@string/co2_ppm"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="#009688"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +30,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="81dp"
         android:layout_marginBottom="74dp"
+        android:fontFamily="monospace"
         android:text="Loading..."
         android:textAlignment="center"
+        android:textColor="#009688"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/tempLableTextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,8 +68,8 @@
         android:id="@+id/tempLableTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="305dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="304dp"
         android:text="Temperature"
         android:textColor="#3c00b0"
         android:textSize="18sp"
@@ -78,8 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:textSize="24sp"
+        android:textColor="@color/black"
 
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/tempLableTextView"
         app:layout_constraintStart_toStartOf="@+id/tempLableTextView"
         app:layout_constraintTop_toBottomOf="@+id/tempLableTextView" />
@@ -88,21 +92,21 @@
         android:id="@+id/humidityLabletextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="40dp"
         android:text="Humidity"
         android:textColor="#3c00b0"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/humidityTextView"
-        app:layout_constraintHorizontal_bias="0.232"
-        app:layout_constraintStart_toStartOf="@+id/humidityTextView"
-        app:layout_constraintTop_toBottomOf="@+id/co2Concentration" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/humidityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="77dp"
+        android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/humidityLabletextView"
+        app:layout_constraintStart_toStartOf="@+id/humidityLabletextView"
         app:layout_constraintTop_toBottomOf="@+id/humidityLabletextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
