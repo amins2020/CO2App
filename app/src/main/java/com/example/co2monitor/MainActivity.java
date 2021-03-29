@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // Public and Private members used in MainActivity
+    // Public and Private members used in MainActivity/
     private TextView co2lable;
     private TextView humidityLable;
     private TextView tempLable;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
 
-    //Methods
+    //Methods:
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         temperature = findViewById(R.id.tempTextView);
         humidity = findViewById(R.id.humidityTextView);
 
-        //Button for SuggestionActivity
+        //Button for SuggestionActivity /
         suggestion = findViewById(R.id.suggestion_button);
         suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
