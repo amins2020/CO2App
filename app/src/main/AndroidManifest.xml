@@ -24,6 +24,13 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.CO2Monitor.NoActionBar" />
 
+        <activity
+            android:name=".PastActivity"
+            android:label="Past Readings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.CO2Monitor.NoActionBar"
+            />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

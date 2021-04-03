@@ -33,7 +33,7 @@ public class SuggestionActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Used in order to make a back arrow button to go back to the MainActivity
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Used in order to make a back arrow past_button to go back to the MainActivity
 
         sugg1= findViewById(R.id.sugg1);
         sugg1.setOnClickListener(new View.OnClickListener() {

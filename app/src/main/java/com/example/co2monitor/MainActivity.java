@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Button suggestion;
     private Button info;
+    private Button past;
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference co2data = mDatabase.child("co2_ppm");
@@ -106,7 +107,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openInfoActivity();
             }
         });
+
+        //Button for InfoActivity
+        past = findViewById(R.id.past_button);
+        past.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPastActivity();
+            }
+        });
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -131,6 +144,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
 
+    }
+
+    public void openPastActivity() {
+        Intent intent = new Intent(this, PastActivity.class);
+        startActivity(intent);
     }
 
     // CO2 ppm will be shown with onStart after onCreate is called
