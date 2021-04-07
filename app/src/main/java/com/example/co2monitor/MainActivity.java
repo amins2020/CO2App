@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -28,6 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Public and Private members used in MainActivity/
+    private static final String TAG = "MyActivity";
+    private static short counter = 0;
+    private static int [] array = new int[4];
+
     private TextView co2lable;
     private TextView humidityLable;
     private TextView tempLable;
@@ -145,6 +150,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
 
     }
+    //Second thread running with a while loop to check hardware's WIFI connection
+    Runnable myRunnable = new Runnable(){
+        @Override
+        public void run(){
+            while(true){
+                while(counter <= 3){
+                    try {
+                        Thread.sleep(10000);
+                        co2data.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String sensor_data = dataSnapshot.getValue(String.class);
+                                int data_int = Integer.parseInt(sensor_data);
+                                array[counter] = data_int;
+                                if (counter == 3){
+                                    int sum = 0;
+                                    for (int value : array) {
+                                        sum = sum + value;
+                                    }
+                                    int average = sum/4;
+                                    if (average == array[0] && average == array[3]){
+                                        Toast.makeText(MainActivity.this, "Data is out of sync, Check the hardware!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    counter = (short) (counter + 1);
+                }
+                counter = 0;
+            }
+        }
+    };
+
 
     public void openPastActivity() {
         Intent intent = new Intent(this, PastActivity.class);
@@ -155,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
+        Thread myThread = new Thread(myRunnable);
+        myThread.start();
 
         co2data.addValueEventListener(new ValueEventListener() {
             @Override
