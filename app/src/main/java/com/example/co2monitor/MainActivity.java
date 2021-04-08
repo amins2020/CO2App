@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button info;
     private Button past;
 
+    DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference co2data = mDatabase.child("co2_ppm");
     DatabaseReference tempData = mDatabase.child("temperature");
     DatabaseReference humidityData = mDatabase.child("humidity");
+
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -171,8 +174,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     }
                                     int average = sum/4;
                                     if (average == array[0] && average == array[3]){
-                                        Toast.makeText(MainActivity.this, "Data is out of sync, Check the hardware!",
+                                        Toast.makeText(MainActivity.this, "Data is out of sync, Check connection!",
                                                 Toast.LENGTH_LONG).show();
+                                        co2Levels.setText("Loading...");
+                                        temperature.setText("Loading");
+                                        humidity.setText("Loading");
+
                                     }
                                 }
                             }
@@ -240,6 +247,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    Log.d(TAG, "connected");
+                    Toast.makeText(MainActivity.this, "Check Wifi connection!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d(TAG, "not connected");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Listener was cancelled");
+            }
+        });
+
 
     }
 
