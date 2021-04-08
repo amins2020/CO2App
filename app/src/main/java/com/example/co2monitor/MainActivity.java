@@ -27,12 +27,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingDeque;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Public and Private members used in MainActivity/
     private static final String TAG = "MyActivity";
-    private static short counter = 0;
-    private static int [] array = new int[4];
+    private static short counter = 0;       //used in myThread1
+    private static short counter2 = 0;      //Used in myThread2 for graphing
+    private static int [] array = new int[4];       //used in myThread1
+    private static int [] array_g = new int [6]; //Used in thread 2 to hold sensor readings every 5 sec
+    private static Queue<Integer> q_graph = new LinkedBlockingDeque<>(360);  //Queue holding averaged data, averaged every 30 seconds
+
 
     private TextView co2lable;
     private TextView humidityLable;
@@ -46,12 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button info;
     private Button past;
 
-    DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");    //Firebase ref to check App connection to firebase
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();    //Firebase references
     DatabaseReference co2data = mDatabase.child("co2_ppm");
     DatabaseReference tempData = mDatabase.child("temperature");
     DatabaseReference humidityData = mDatabase.child("humidity");
-
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -153,14 +162,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
 
     }
-    //Second thread running with a while loop to check hardware's WIFI connection
+    //Thread1 running with a while loop to check the connection between sensor and the app every 40 seconds
     Runnable myRunnable = new Runnable(){
         @Override
         public void run(){
             while(true){
-                while(counter <= 3){
+                while(counter <= 3){            //sample 4 sensor readings
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(10000);    //sample sensor reading every 10 seconds
                         co2data.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -172,8 +181,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     for (int value : array) {
                                         sum = sum + value;
                                     }
-                                    int average = sum/4;
-                                    if (average == array[0] && average == array[3]){
+                                    int average = sum/4;        //Average readings
+                                    if (average == array[0] && average == array[3]){    //Check if readings are the same
                                         Toast.makeText(MainActivity.this, "Data is out of sync, Check connection!",
                                                 Toast.LENGTH_LONG).show();
                                         co2Levels.setText("Loading...");
@@ -198,6 +207,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     };
 
+    //Thread 2 for GRAPHING data
+
+    Runnable myRunnable2 = new Runnable(){
+        @Override
+        public void run(){
+            boolean bb = true;
+            while(true){
+                while(counter2 <= 5){
+                    try {
+                        if(!bb){
+                            Thread.sleep(5000);     //sample sensor readings every 5 seconds for graphing
+                        }
+                        co2data.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String co2data2 = dataSnapshot.getValue(String.class);
+                                int co2data_int = Integer.parseInt(co2data2);
+                                array_g[counter2] = co2data_int;
+                                if (counter == 5){
+                                    int sum= 0;
+                                    for(int value:array_g){
+                                        sum = sum + value;
+                                    }
+                                    int average = sum/array_g.length;
+                                    if (q_graph.size() != 360){
+                                        q_graph.offer(average);     //Add the average to queue
+                                    }
+
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    counter2 = (short) (counter2 + 1);
+                    bb = false;
+                }
+                counter2 = 0;
+            }
+        }
+    };
+
 
     public void openPastActivity() {
         Intent intent = new Intent(this, PastActivity.class);
@@ -210,6 +265,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
         Thread myThread = new Thread(myRunnable);
         myThread.start();
+        Thread myThread2 = new Thread(myRunnable2);
+        myThread2.start();
 
         co2data.addValueEventListener(new ValueEventListener() {
             @Override
