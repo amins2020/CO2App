@@ -28,20 +28,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Public and Private members used in MainActivity/
     private static final String TAG = "MyActivity";
-    private static short counter = 0;       //used in myThread1
-    private static short counter2 = 0;      //Used in myThread2 for graphing
+    private static short counter = -1;       //used in myThread1
+    private static short counter2 = -1;      //Used in myThread2 for graphing
     private static int [] array = new int[4];       //used in myThread1
     private static int [] array_g = new int [6]; //Used in thread 2 to hold sensor readings every 5 sec
-    private static Queue<Integer> q_graph = new LinkedBlockingDeque<>(360);  //Queue holding averaged data, averaged every 30 seconds
+    private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
 
 
     private TextView co2lable;
@@ -136,8 +136,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
     @Override
     public void onBackPressed() {
 
@@ -175,13 +173,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String sensor_data = dataSnapshot.getValue(String.class);
                                 int data_int = Integer.parseInt(sensor_data);
+
                                 array[counter] = data_int;
                                 if (counter == 3){
                                     int sum = 0;
                                     for (int value : array) {
                                         sum = sum + value;
                                     }
-                                    int average = sum/4;        //Average readings
+                                    int average = sum/array.length;        //Average readings
+                                    //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+array[0]);
                                     if (average == array[0] && average == array[3]){    //Check if readings are the same
                                         Toast.makeText(MainActivity.this, "Data is out of sync, Check connection!",
                                                 Toast.LENGTH_LONG).show();
@@ -212,29 +212,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Runnable myRunnable2 = new Runnable(){
         @Override
         public void run(){
-            boolean bb = true;
-            while(true){
                 while(counter2 <= 5){
                     try {
-                        if(!bb){
                             Thread.sleep(5000);     //sample sensor readings every 5 seconds for graphing
-                        }
                         co2data.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String co2data2 = dataSnapshot.getValue(String.class);
                                 int co2data_int = Integer.parseInt(co2data2);
                                 array_g[counter2] = co2data_int;
-                                if (counter == 5){
-                                    int sum= 0;
-                                    for(int value:array_g){
-                                        sum = sum + value;
+                                //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+counter2);
+                                if (counter2 == 5){
+                                    int sum =0;
+                                    for(int v:array_g){
+                                        sum = sum + v;
                                     }
                                     int average = sum/array_g.length;
-                                    if (q_graph.size() != 360){
-                                        q_graph.offer(average);     //Add the average to queue
-                                    }
+                                    //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+average);
+                                    if (q_graph.size() <= 360){
+                                        q_graph.add(average);     //Add the average to queue
+                                        int p = q_graph.peek();
+                                       // Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+q_graph.size());
 
+                                    }
                                 }
                             }
                             @Override
@@ -246,13 +246,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         e.printStackTrace();
                     }
                     counter2 = (short) (counter2 + 1);
-                    bb = false;
+                    if (counter2 >= 6){
+                        counter2 = 0;
+                    }
                 }
-                counter2 = 0;
             }
-        }
     };
-
 
     public void openPastActivity() {
         Intent intent = new Intent(this, PastActivity.class);
@@ -264,8 +263,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         Thread myThread = new Thread(myRunnable);
-        myThread.start();
         Thread myThread2 = new Thread(myRunnable2);
+        myThread.start();
         myThread2.start();
 
         co2data.addValueEventListener(new ValueEventListener() {
