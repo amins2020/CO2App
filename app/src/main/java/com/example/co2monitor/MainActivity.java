@@ -160,6 +160,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
 
     }
+
+    public static Queue<Integer> getQ_graph() {
+        return q_graph;
+    }
+
+
     //Thread1 running with a while loop to check the connection between sensor and the app every 40 seconds
     Runnable myRunnable = new Runnable(){
         @Override
@@ -251,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
             }
+
     };
 
     public void openPastActivity() {
@@ -291,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
         humidityData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
