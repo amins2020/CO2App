@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static short counter2 = -1;      //Used in myThread2 for graphing
     private static int [] array = new int[4];       //used in myThread1
     private static int [] array_g = new int [6]; //Used in thread 2 to hold sensor readings every 5 sec
-    private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
+    //private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
+    public Graph_util guObj = new Graph_util();
 
 
     private TextView co2lable;
@@ -136,6 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void openPastActivity() {
+        //Intent intent = new Intent(this, PastActivity.class);
+        Intent intent = new Intent(MainActivity.this, PastActivity.class );
+        intent.putExtra("queueObj", guObj);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
 
@@ -161,9 +170,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public static Queue<Integer> getQ_graph() {
+    /*public static Queue<Integer> getQ_graph() {
         return q_graph;
-    }
+    }*/
 
 
     //Thread1 running with a while loop to check the connection between sensor and the app every 40 seconds
@@ -214,7 +223,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     };
 
     //Thread 2 for GRAPHING data
-
     Runnable myRunnable2 = new Runnable(){
         @Override
         public void run(){
@@ -235,9 +243,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     }
                                     int average = sum/array_g.length;
                                     //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+average);
-                                    if (q_graph.size() <= 360){
-                                        q_graph.add(average);     //Add the average to queue
-                                        int p = q_graph.peek();
+                                    if (guObj.q_graph.size() <= 360){
+                                        guObj.q_graph.add(average);     //Add the average to queue
+                                        //int p = graph_data.q_graph.peek();
                                        // Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+q_graph.size());
 
                                     }
@@ -259,11 +267,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
     };
-
-    public void openPastActivity() {
-        Intent intent = new Intent(this, PastActivity.class);
-        startActivity(intent);
-    }
 
     // CO2 ppm will be shown with onStart after onCreate is called
     @Override
@@ -319,10 +322,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 boolean connected = snapshot.getValue(Boolean.class);
                 if (connected) {
                     Log.d(TAG, "connected");
-                    Toast.makeText(MainActivity.this, "Check Wifi connection!",
+                    Toast.makeText(MainActivity.this, "Wifi connected ",
                             Toast.LENGTH_LONG).show();
                 } else {
-                    Log.d(TAG, "not connected");
+                    Log.d(TAG, "Wifi not connected");
                 }
             }
 
