@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Public and Private members used in MainActivity/
     private static final String TAG = "MyActivity";
-    private static short counter = -1;       //used in myThread1
-    private static short counter2 = -1;      //Used in myThread2 for graphing
-    private static int [] array = new int[4];       //used in myThread1
+    private static int [] array = new int[10];       //used in myThread1
     private static int [] array_g = new int [6]; //Used in thread 2 to hold sensor readings every 5 sec
     //private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
     public Graph_util guObj = new Graph_util();
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        //Button for InfoActivity
+        //Button for pastActivity
         past = findViewById(R.id.past_button);
         past.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openPastActivity();
             }
         });
+
 
     }
 
@@ -177,27 +176,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Thread1 running with a while loop to check the connection between sensor and the app every 40 seconds
     Runnable myRunnable = new Runnable(){
+        short counter = 0;
         @Override
         public void run(){
-            while(true){
-                while(counter <= 3){            //sample 4 sensor readings
+                while(counter <= 9){            //sample 5 sensor readings
+
                     try {
                         Thread.sleep(10000);    //sample sensor reading every 10 seconds
-                        co2data.addValueEventListener(new ValueEventListener() {
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    co2data.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String sensor_data = dataSnapshot.getValue(String.class);
                                 int data_int = Integer.parseInt(sensor_data);
-
+                                Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+counter);
                                 array[counter] = data_int;
-                                if (counter == 3){
+                                Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+array[counter]);
+                                if (counter == 9){
+                                    counter=0;
                                     int sum = 0;
                                     for (int value : array) {
                                         sum = sum + value;
                                     }
                                     int average = sum/array.length;        //Average readings
-                                    //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+array[0]);
-                                    if (average == array[0] && average == array[3]){    //Check if readings are the same
+                                    Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+average);
+                                    if (average == array[0] && average == array[1] && average==array[2] && average ==array[3]&&average==array[4]){    //Check if readings are the same
                                         Toast.makeText(MainActivity.this, "Data is out of sync, Check connection!",
                                                 Toast.LENGTH_LONG).show();
                                         co2Levels.setText("Loading...");
@@ -206,34 +211,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                     }
                                 }
+                                else{
+                                    counter = (short) (counter + 1);
+                                }
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
                             }
                         });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    counter = (short) (counter + 1);
+
+
                 }
-                counter = 0;
             }
-        }
     };
 
     //Thread 2 for GRAPHING data
-    Runnable myRunnable2 = new Runnable(){
+     Runnable myRunnable2 = new Runnable(){
+   short counter2= 0;
         @Override
         public void run(){
                 while(counter2 <= 5){
                     try {
-                            Thread.sleep(5000);     //sample sensor readings every 5 seconds for graphing
+                        Thread.sleep(5000);     //sample sensor readings every 5 seconds for graphing
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                         co2data.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String co2data2 = dataSnapshot.getValue(String.class);
                                 int co2data_int = Integer.parseInt(co2data2);
+
                                 array_g[counter2] = co2data_int;
                                 //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+counter2);
                                 if (counter2 == 5){
@@ -243,12 +252,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     }
                                     int average = sum/array_g.length;
                                     //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+average);
-                                    if (guObj.q_graph.size() <= 360){
-                                        guObj.q_graph.add(average);     //Add the average to queue
-                                        //int p = graph_data.q_graph.peek();
+
+                                    guObj.q_graph.add(average);     //Add the average to queue
+                                    int p = guObj.q_graph.peek();
+                                    //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++" + p);
                                        // Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+q_graph.size());
 
-                                    }
+                                }
+                                else{
+                                    counter2 = (short) (counter2 + 1);
                                 }
                             }
                             @Override
@@ -256,16 +268,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             }
                         });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    counter2 = (short) (counter2 + 1);
-                    if (counter2 >= 6){
-                        counter2 = 0;
-                    }
+
                 }
             }
-
     };
 
     // CO2 ppm will be shown with onStart after onCreate is called
@@ -289,6 +294,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+
         tempData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
