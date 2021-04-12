@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Public and Private members used in MainActivity/
     private static final String TAG = "MyActivity";
     private static int [] array = new int[10];       //used in myThread1
-    private static int [] array_g = new int [6]; //Used in thread 2 to hold sensor readings every 5 sec
-    //private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
+    private static int [] array_g = new int [10]; //Used in thread 2 to hold sensor readings every 5 sec
+    private static Queue<Integer> q_graph = new LinkedBlockingQueue<>(360);  //Queue holding averaged data, averaged every 30 seconds
     public Graph_util guObj = new Graph_util();
 
 
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void openPastActivity() {
         //Intent intent = new Intent(this, PastActivity.class);
         Intent intent = new Intent(MainActivity.this, PastActivity.class );
-        intent.putExtra("queueObj", guObj);
+        intent.putExtra("key", (Parcelable) q_graph);
         startActivity(intent);
     }
 
@@ -226,8 +227,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
     };
 
+
+
+
+
     //Thread 2 for GRAPHING data
-     Runnable myRunnable2 = new Runnable(){
+    /* Runnable myRunnable2 = new Runnable(){
    short counter2= 0;
         @Override
         public void run(){
@@ -271,16 +276,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             }
-    };
+    };*/
 
     // CO2 ppm will be shown with onStart after onCreate is called
     @Override
     protected void onStart() {
         super.onStart();
         Thread myThread = new Thread(myRunnable);
-        Thread myThread2 = new Thread(myRunnable2);
+        //Thread myThread2 = new Thread(myRunnable2);
         myThread.start();
-        myThread2.start();
+       // myThread2.start();
 
         co2data.addValueEventListener(new ValueEventListener() {
             @Override
@@ -289,6 +294,80 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 co2Levels.setText(co2data);
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+      /*  co2data.addValueEventListener(new ValueEventListener() {
+            short counter = 0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String sensor_data = dataSnapshot.getValue(String.class);
+                int data_int = Integer.parseInt(sensor_data);
+                if (counter <= 9)
+                Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+counter);
+                array[counter] = data_int;
+                Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+array[counter]);
+                if (counter == 9){
+                    counter=0;
+                    int sum = 0;
+                    for (int value : array) {
+                        sum = sum + value;
+                    }
+                    int average = sum/array.length;        //Average readings
+                    Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+average);
+                    if (average == array[0] && average == array[1] && average==array[2] && average ==array[3]&&average==array[4]){    //Check if readings are the same
+                        Toast.makeText(MainActivity.this, "Data is out of sync, Check connection!",
+                                Toast.LENGTH_LONG).show();
+                        co2Levels.setText("Loading...");
+                        temperature.setText("Loading");
+                        humidity.setText("Loading");
+
+                    }
+                }
+                else{
+                    counter = (short) (counter + 1);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
+
+        co2data.addValueEventListener(new ValueEventListener() {
+            short counter2=0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String co2data2 = dataSnapshot.getValue(String.class);
+                int co2data_int = Integer.parseInt(co2data2);
+                if (counter2 <= 9) {
+                    array_g[counter2] = co2data_int;
+                    //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++" + counter2);
+                   // Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++" + array_g[counter2]);
+                    if (counter2 == 9) {
+                        counter2 = 0;
+                        int sum = 0;
+                        for (int v : array_g) {
+                            sum = sum + v;
+                        }
+                        int average = sum / array_g.length;
+                        //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++" + average);
+
+                        q_graph.add(average);     //Add the average to queue
+                        int p = q_graph.peek();
+                        //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++" + p);
+                        //Log.d(TAG, "MESSAGE*____________+++++++++++++++++++++++++++++++++++"+q_graph.size());
+
+                    } else {
+                        counter2 = (short) (counter2 + 1);
+                    }
+
+                }
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

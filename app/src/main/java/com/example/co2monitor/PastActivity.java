@@ -7,7 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,9 +27,10 @@ import java.text.*;
 
 public class PastActivity extends AppCompatActivity {
 
+    private static final String TAG = "PastActivity";
     private GraphView graph;
-    private LineGraphSeries<DataPoint> ppmseries;
-    private Graph_util graph_inst;
+    private DataPoint ppmseries;
+    private static Queue<Integer> queue = new LinkedBlockingQueue<>(360);
 
 
     // Date Time = new Date();
@@ -52,56 +56,43 @@ public class PastActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setLabelsSpace(20); // adds more space between labels
 
         Intent intent = getIntent();
-        graph_inst = intent.getParcelableExtra("queueObj");
+        queue = intent.getParcelableExtra("key");
 
+    }
+    Runnable myRunnable2 = new Runnable() {
+        @Override
+        public void run() {
+
+            //ppmseries = new LineGraphSeries<>();
+            int counter = queue.size();
+            int [] x_array= {0, 40, 80, 120, 160, 200, 240, 280, 320, 360};
+            int i= 0;
+            int value= 0;
+            while (!queue.isEmpty()) {
+                counter++;
+                value = queue.remove();
+                i++;
+
+                //ppmseries.appendData(new DataPoint(x_array[i++], value), false, 10);
+
+            }
+            try {
+                Thread.sleep(42000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
-    Runnable myRunnable = new Runnable(){
-        @Override
-        public void run(){
-                    try {
-                        DataPoint[] points = new DataPoint[12]; // Up to 12 readings can be shown in the graph (covering up to 3hrs)
-                        double[] ppmreadings =new double[30]; // Array used to store 30 readings in order to do an averaging over 15 mins
-                        int counter = 0; // keeps counts of the number of elements before doing an average for 15 mins
-                        double sumreadings = 0; // sum of 30 readings
-                        double avg = 0; // 15 min average that will be used for a data point
-                        Thread.sleep(5100);
-
-                        while(!graph_inst.q_graph.isEmpty()){ //loops as long as the
-                            for(int i=0; i < ppmreadings.length; i++) { //
-                                ppmreadings[i] = graph_inst.q_graph.remove();
-                                counter++;
-
-                                if(counter == ppmreadings.length){ // if the counter is equal to 30, reset it, then sum all the elements and do an average
-                                    counter = 0;
-                                    for(int j = 0; j < 30; j++){
-                                        sumreadings = sumreadings + ppmreadings[j];
-                                    }
-                                    avg = sumreadings/30;
-                                }
-                            }
-                            int i = 0;
-                            points[i+1] = new DataPoint(i,avg);
-                            i++;
-                            ppmseries = new LineGraphSeries<>(points);
-                            graph.addSeries(ppmseries);
-                            Thread.sleep(5100);
-
-                        }
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
     };
-        @Override
-        protected void onStart(){
+    @Override
+    protected void onStart() {
         super.onStart();
 
-        Thread aThread = new Thread(myRunnable);
+        Thread myThread = new Thread(myRunnable2);
+        myThread.start();
+        //graph.addSeries(ppmseries);
 
-        }
 
+
+    }
 }
 
